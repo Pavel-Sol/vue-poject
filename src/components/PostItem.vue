@@ -2,7 +2,7 @@
   <div class="post">
     <div>
       <div><strong>название </strong> {{ post.title }}</div>
-      <div><strong> описание</strong> {{ post.desc }}</div>
+      <div><strong> описание</strong> {{ post.body }}</div>
     </div>
 
     <div class="post__btns">

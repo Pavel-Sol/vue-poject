@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent>
     <MyInput v-model="post.title" />
-    <MyInput v-model="post.desc" />
+    <MyInput v-model="post.body" />
     <MyButton @click="createPost">добавить</MyButton>
   </form>
 </template>
@@ -12,7 +12,7 @@ export default {
     return {
       post: {
         title: '',
-        desc: '',
+        body: '',
       },
     };
   },
@@ -25,7 +25,7 @@ export default {
 
       this.post = {
         title: '',
-        desc: '',
+        body: '',
       };
     },
   },
