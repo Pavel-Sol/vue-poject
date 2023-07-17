@@ -41,4 +41,8 @@ export default {
 .app {
   padding: 30px;
 }
+
+button {
+  cursor: pointer;
+}
 </style>

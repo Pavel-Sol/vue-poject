@@ -1,7 +1,13 @@
 <template>
   <div class="post">
-    <div><strong>название </strong> {{ post.title }}</div>
-    <div><strong> описание</strong> {{ post.desc }}</div>
+    <div>
+      <div><strong>название </strong> {{ post.title }}</div>
+      <div><strong> описание</strong> {{ post.desc }}</div>
+    </div>
+
+    <div class="post__btns">
+      <MyButton>удалить</MyButton>
+    </div>
   </div>
 </template>
 
@@ -21,5 +27,8 @@ export default {
   border: 2px solid darkgreen;
   padding: 15px;
   margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>
