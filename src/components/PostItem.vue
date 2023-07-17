@@ -6,7 +6,7 @@
     </div>
 
     <div class="post__btns">
-      <MyButton>удалить</MyButton>
+      <MyButton @click="$emit('remove', post)">удалить</MyButton>
     </div>
   </div>
 </template>
@@ -19,6 +19,8 @@ export default {
       required: true,
     },
   },
+
+  methods: {},
 };
 </script>
 
