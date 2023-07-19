@@ -22,19 +22,7 @@
 
     <p v-else>Идет загрузка...</p>
 
-    <div class="pagination">
-      <div
-        v-for="pageNumber in totalPages"
-        :key="pageNumber"
-        @click="changePage(pageNumber)"
-        class="pagination__item"
-        :class="{
-          pagination__item__current: pageNumber === page,
-        }"
-      >
-        {{ pageNumber }}
-      </div>
-    </div>
+    <div ref="observer" class="observer"></div>
   </div>
 </template>
 
@@ -80,10 +68,6 @@ export default {
       this.dialogVisible = true;
     },
 
-    changePage(pageNumber) {
-      this.page = pageNumber;
-    },
-
     async fetchPosts() {
       try {
         this.isPostsLoading = true;
@@ -107,10 +91,43 @@ export default {
         this.isPostsLoading = false;
       }
     },
+
+    async loadMorePosts() {
+      try {
+        this.page += 1;
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/posts",
+          {
+            params: {
+              _page: this.page,
+              _limit: this.limit,
+            },
+          }
+        );
+
+        this.posts = [...this.posts, ...response.data];
+      } catch (error) {
+        alert("ошибка");
+      }
+    },
   },
 
   mounted() {
     this.fetchPosts();
+
+    const options = {
+      rootMargin: "0px",
+      threshold: 1.0,
+    };
+
+    const callback = (entries, observer) => {
+      if (entries[0].isIntersecting && this.page < this.totalPages) {
+        this.loadMorePosts();
+      }
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(this.$refs.observer);
   },
 
   computed: {
@@ -123,15 +140,13 @@ export default {
     },
 
     searchedAndSortedPosts() {
-      return this.sortedPosts.filter((p) => p.title.includes(this.searchQuery));
+      return this.sortedPosts.filter((p) =>
+        p.title?.includes(this.searchQuery)
+      );
     },
   },
 
-  watch: {
-    page() {
-      this.fetchPosts();
-    },
-  },
+  watch: {},
 };
 </script>
 
@@ -151,28 +166,12 @@ export default {
   justify-content: space-between;
 }
 
-.pagination {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  margin-top: 20px;
-}
-
-.pagination__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid teal;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.pagination__item__current {
-  background-color: teal;
-}
-
 button {
   cursor: pointer;
+}
+
+.observer {
+  height: 15px;
+  background-color: blue;
 }
 </style>
