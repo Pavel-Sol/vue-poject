@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <div>
+    <div class="post__info">
       <span>{{ post.id }}</span>
       <div>
         <strong>название</strong>
@@ -13,6 +13,7 @@
     </div>
 
     <div class="post__btns">
+      <MyButton @click="$router.push(`/posts/${post.id}`)">открыть</MyButton>
       <MyButton @click="$emit('remove', post)">удалить</MyButton>
     </div>
   </div>
@@ -39,5 +40,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.post__info {
+  max-width: 70%;
 }
 </style>
