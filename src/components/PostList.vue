@@ -2,7 +2,12 @@
   <div v-show="posts.length > 0">
     <h3>список постов</h3>
     <transition-group name="post-list">
-      <PostItem v-for="post in posts" :post="post" :key="post.id" @remove="$emit('remove', post)" />
+      <PostItem
+        v-for="post in posts"
+        :post="post"
+        :key="post.id"
+        @remove="$emit('remove', post)"
+      />
     </transition-group>
   </div>
 
@@ -10,7 +15,7 @@
 </template>
 
 <script>
-import PostItem from '@/components/PostItem.vue';
+import PostItem from "@/components/PostItem.vue";
 
 export default {
   components: {
