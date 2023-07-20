@@ -45,6 +45,13 @@ export const postModule = {
     setSearchQuery(state, searchQuery) {
       state.searchQuery = searchQuery;
     },
+    removePost(state, post) {
+      state.posts = state.posts.filter((item) => item.id !== post.id);
+    },
+
+    createPost(state, post) {
+      state.posts.unshift(post);
+    },
   },
   actions: {
     async fetchPosts({ state, commit }) {

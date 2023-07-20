@@ -49,17 +49,19 @@ export default {
       setPage: "post/setPage",
       setSearchQuery: "post/setSearchQuery",
       setSelectedSort: "post/setSelectedSort",
+      removePostMutation: "post/removePost",
+      createPostMutation: "post/createPost",
     }),
     ...mapActions({
       loadMorePosts: "post/loadMorePosts",
       fetchPosts: "post/fetchPosts",
     }),
     createPost(post) {
-      this.posts.push(post);
+      this.createPostMutation(post);
       this.dialogVisible = false;
     },
     removePost(post) {
-      this.posts = this.posts.filter((p) => p.id !== post.id);
+      this.removePostMutation(post);
     },
     showDialog() {
       this.dialogVisible = true;
