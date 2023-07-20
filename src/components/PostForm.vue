@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent>
-    <MyInput v-model="post.title" />
+    <MyInput v-model="post.title" v-focus />
     <MyInput v-model="post.body" />
     <MyButton @click="createPost">добавить</MyButton>
   </form>
@@ -11,8 +11,8 @@ export default {
   data() {
     return {
       post: {
-        title: '',
-        body: '',
+        title: "",
+        body: "",
       },
     };
   },
@@ -21,11 +21,11 @@ export default {
     createPost() {
       this.post.id = Date.now();
 
-      this.$emit('create', this.post);
+      this.$emit("create", this.post);
 
       this.post = {
-        title: '',
-        body: '',
+        title: "",
+        body: "",
       };
     },
   },
