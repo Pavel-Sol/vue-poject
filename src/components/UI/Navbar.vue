@@ -5,6 +5,9 @@
     <div class="navbar__btns">
       <MyButton @click="$router.push('/about')">Оприложении</MyButton>
       <MyButton @click="$router.push('/posts')">Посты</MyButton>
+      <MyButton @click="$router.push('/posts-with-vuex')">
+        Посты c vuex
+      </MyButton>
     </div>
   </div>
 </template>
