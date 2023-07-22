@@ -8,6 +8,9 @@
       <MyButton @click="$router.push('/posts-with-vuex')">
         Посты c vuex
       </MyButton>
+      <MyButton @click="$router.push('/posts-with-composition-api')">
+        Посты c composition-api
+      </MyButton>
     </div>
   </div>
 </template>
